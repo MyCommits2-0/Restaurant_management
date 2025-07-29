@@ -42,9 +42,9 @@ public class User extends BaseEntity {
 	@Column(name = "subscription_amount")
 	private double subscriptionAmount;	
 	//User 1 ----> 1 Address
-//	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
-//	@JoinColumn(name="address_id")
-//	private Address myAddress;
+	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name="address_id")
+	private Address myAddress;
 
 	// parameterized ctor for sign up
 	public User(String firstName, String lastName, String email, String password, LocalDate dob, UserRole userRole,
