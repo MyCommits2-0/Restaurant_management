@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HeaderComponent from './components/HeaderComponent';
+import ListRestaurantComponent from './components/ListRestaurantComponent';
+import SaveOrUpdateRestaurant from './components/SaveOrUpdateRestaurant';
+import RegisterUser from "./components/RegisterUser";
+import LoginUser from "./components/LoginUser";
+import AddFoodItem from "./components/AddFoodItem"; 
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <HeaderComponent />
+      <Routes>
+        <Route path="/register" element={<RegisterUser />} />
+        <Route path="/login" element={<LoginUser />} />
+        <Route path="/" element={<ListRestaurantComponent />} />
+        <Route path="/restaurants" element={<ListRestaurantComponent />} />
+        <Route path="/add-restaurant" element={<SaveOrUpdateRestaurant />} />
+        <Route path="/edit-restaurant/:id" element={<SaveOrUpdateRestaurant />} />
+        <Route path="/add-food/:restaurantId" element={<AddFoodItem />} /> 
+      </Routes>
+    </Router>
+  );
+} 
 
-export default App
+export default App;
